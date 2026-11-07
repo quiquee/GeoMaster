@@ -21,13 +21,13 @@
     '01': { t: ['Andalucía'] },
     '02': { t: ['Aragón'] },
     '03': { t: ['Asturias'], s: 13 },
-    '04': { t: ['Islas', 'Baleares'], x: 880, y: 440, s: 14 },
+    '04': { t: ['Baleares'], x: 880, y: 432, s: 14 },
     '05': { t: ['Canarias'], x: 107, y: 652, s: 14 },
     '06': { t: ['Cantabria'], s: 12 },
     '07': { t: ['Castilla', 'y León'] },
     '08': { t: ['Castilla-', 'La Mancha'] },
     '09': { t: ['Cataluña'] },
-    '10': { t: ['Comunidad', 'Valenciana'], x: 632, y: 418, s: 14 },
+    '10': { t: ['Valencia'], x: 628, y: 418, s: 14 },
     '11': { t: ['Extremadura'] },
     '12': { t: ['Galicia'] },
     '13': { t: ['Madrid'], s: 13 },
@@ -132,6 +132,8 @@
       listEl.appendChild(li);
       listBtns[r.id] = btn;
     });
+    // Dos columnas que caben enteras en pantalla (sin scroll)
+    listEl.style.setProperty('--rows', Math.ceil(items.length / 2));
   }
 
   // ---------- Sonido ----------
@@ -285,7 +287,6 @@
       svg.classList.add('show-borders');
       listEl.classList.remove('pickable');
       listBtns[id].classList.add('target');
-      listBtns[id].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       promptEl.innerHTML = PROMPT_TEXT.where(regionsById[id].name);
     }
     state.locked = false;

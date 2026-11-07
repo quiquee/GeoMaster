@@ -13,7 +13,7 @@ const pathM = d3.geoPath(pm).digits(1);
 const box=[[10,H-150],[205,H-10]];
 const pc = d3.geoConicConformal().rotate([15.5,0]).parallels([27,29]).fitExtent([[box[0][0]+12,box[0][1]+12],[box[1][0]-12,box[1][1]-12]], can);
 const pathC = d3.geoPath(pc).digits(1);
-const short = {"01":"Andalucía","02":"Aragón","03":"Asturias","04":"Islas Baleares","05":"Canarias","06":"Cantabria","07":"Castilla y León","08":"Castilla-La Mancha","09":"Cataluña","10":"Comunidad Valenciana","11":"Extremadura","12":"Galicia","13":"Comunidad de Madrid","14":"Región de Murcia","15":"Navarra","16":"País Vasco","17":"La Rioja","18":"Ceuta","19":"Melilla"};
+const short = {"01":"Andalucía","02":"Aragón","03":"Asturias","04":"Baleares","05":"Canarias","06":"Cantabria","07":"Castilla y León","08":"Castilla-La Mancha","09":"Cataluña","10":"Valencia","11":"Extremadura","12":"Galicia","13":"Madrid","14":"Murcia","15":"Navarra","16":"País Vasco","17":"La Rioja","18":"Ceuta","19":"Melilla"};
 const out=[];
 for (const f of feats){
   const path = f.id==="05"?pathC:pathM;
