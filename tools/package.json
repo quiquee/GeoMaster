@@ -1,0 +1,12 @@
+{
+  "name": "geomaster-tools",
+  "private": true,
+  "description": "Regenera js/map-data.js a partir de es-atlas",
+  "type": "module",
+  "scripts": { "generate": "node generate-map.mjs" },
+  "devDependencies": {
+    "d3-geo": "^3.1.1",
+    "es-atlas": "0.6.0",
+    "topojson-client": "^3.1.0"
+  }
+}

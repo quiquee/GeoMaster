@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>GeoMaster · Comunidades Autónomas</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand">🗺️ GeoMaster</div>
+    <div id="prompt" class="prompt">Comunidades autónomas de España</div>
+    <div class="stats">
+      <span class="stat ok" title="Aciertos">✔ <b id="hits">0</b></span>
+      <span class="stat ko" title="Fallos">✘ <b id="misses">0</b></span>
+      <span class="stat" title="Descubiertas"><b id="found">0</b>/<b id="total">0</b></span>
+      <button id="btnSound" class="icon-btn" title="Sonido" aria-label="Sonido">🔊</button>
+      <button id="btnMenu" class="icon-btn" title="Menú" aria-label="Menú">☰</button>
+    </div>
+  </header>
+  <div id="timerbar"><div id="timerfill"></div><span id="timertext"></span></div>
+
+  <main id="game">
+    <section id="mapWrap">
+      <svg id="map" role="img" aria-label="Mapa de España"></svg>
+      <div id="toast" class="toast"></div>
+    </section>
+    <aside id="listWrap">
+      <ul id="list"></ul>
+    </aside>
+  </main>
+
+  <!-- Menú inicial -->
+  <div id="menu" class="overlay show">
+    <div class="card">
+      <h1>🗺️ GeoMaster</h1>
+      <p class="sub">¿Te acuerdas de las comunidades autónomas de España?</p>
+
+      <h3>Modo de juego</h3>
+      <div class="options" id="optMode">
+        <button data-v="which" class="opt sel"><span class="big">🟧</span><b>¿Qué comunidad es?</b><small>Se marca una en el mapa y eliges su nombre en la lista.</small></button>
+        <button data-v="where" class="opt"><span class="big">👆</span><b>¿Dónde está?</b><small>Se marca un nombre y la tocas en el mapa.</small></button>
+        <button data-v="mix" class="opt"><span class="big">🔀</span><b>Mezclado</b><small>Un poco de cada.</small></button>
+      </div>
+
+      <h3>Tiempo por pregunta</h3>
+      <div class="options small" id="optTime">
+        <button data-v="3" class="opt">3 s</button>
+        <button data-v="5" class="opt sel">5 s</button>
+        <button data-v="8" class="opt">8 s</button>
+        <button data-v="12" class="opt">12 s</button>
+        <button data-v="0" class="opt">Sin límite</button>
+      </div>
+
+      <label class="check"><input type="checkbox" id="optCities" checked> Incluir Ceuta y Melilla (ciudades autónomas)</label>
+
+      <button id="btnStart" class="primary">¡A jugar! ▶</button>
+    </div>
+  </div>
+
+  <!-- Pantalla final -->
+  <div id="end" class="overlay">
+    <div class="card">
+      <h1 id="endTitle">¡Mapa completado!</h1>
+      <div id="stars" class="stars"></div>
+      <p id="endText"></p>
+      <div class="row">
+        <button id="btnAgain" class="primary">Otra vez ↻</button>
+        <button id="btnToMenu" class="secondary">Menú</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/map-data.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
