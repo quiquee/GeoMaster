@@ -1,11 +1,20 @@
-# 🗺️ GeoMaster · Comunidades Autónomas de España
+# 🎲 Juegos Reunidos JamesMer
+
+Colección de juegos educativos para el navegador. Abre `index.html` para elegir juego.
+
+| Juego | Carpeta |
+|---|---|
+| 🗺️ Comunidades Autónomas | `comunidades/` |
+| 🎁 Más juegos pronto | |
+
+## 🗺️ Comunidades Autónomas
 
 Juego para repasar las comunidades autónomas de España (pensado para niños de 11–12 años).
 Funciona en el navegador, con ratón o con pantalla táctil, sin instalar nada.
 
-## Cómo jugar
+### Cómo jugar
 
-Abre `index.html` en el navegador (o publícalo con GitHub Pages) y elige:
+Abre `index.html` en el navegador (o publícalo con GitHub Pages), entra en **Comunidades Autónomas** y elige:
 
 - **¿Qué comunidad es?** – En el mapa (solo la silueta de España) se rellena una comunidad.
   Tienes que tocar su nombre en la lista de la derecha antes de que se acabe el tiempo.
@@ -21,17 +30,18 @@ Reglas:
 - La partida termina cuando están todas descubiertas. Al final se ven las estrellas y las comunidades para repasar.
 - Opción para incluir o no Ceuta y Melilla (ciudades autónomas).
 
-## Estructura
+### Estructura
 
 ```
-index.html        Página del juego
-css/style.css     Estilos (adaptado a horizontal y vertical)
-js/game.js        Lógica del juego
-js/map-data.js    Mapa ya proyectado a SVG (generado)
-tools/            Script para regenerar js/map-data.js
+index.html                    Pantalla de inicio: elegir juego
+comunidades/index.html        Juego de las comunidades
+comunidades/css/style.css     Estilos (adaptado a horizontal y vertical)
+comunidades/js/game.js        Lógica del juego
+comunidades/js/map-data.js    Mapa ya proyectado a SVG (generado)
+tools/                        Script para regenerar comunidades/js/map-data.js
 ```
 
-## Regenerar el mapa (opcional)
+### Regenerar el mapa (opcional)
 
 El mapa sale de [es-atlas](https://github.com/martgnz/es-atlas) (licencia MIT, datos del IGN) y se proyecta con d3-geo:
 

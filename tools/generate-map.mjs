@@ -26,5 +26,5 @@ for (const f of feats){
   out.push({id:f.id,name:short[f.id],d:path(f),cx:+c[0].toFixed(1),cy:+c[1].toFixed(1),area:+path.area(f).toFixed(0)});
 }
 const data={width:W,height:H,canaryBox:[box[0][0],box[0][1],box[1][0]-box[0][0],box[1][1]-box[0][1]],regions:out};
-fs.writeFileSync(new URL('../js/map-data.js', import.meta.url),'// Mapa generado a partir de es-atlas (MIT, https://github.com/martgnz/es-atlas) con d3-geo.\n// Coordenadas ya proyectadas en un lienzo SVG de '+W+'x'+H+'.\nwindow.MAP_DATA = '+JSON.stringify(data)+';\n');
-console.log(fs.statSync('map-data.js').size); console.log(out.map(r=>r.name+' '+r.cx+','+r.cy+' a='+r.area).join('\n'));
+fs.writeFileSync(new URL('../comunidades/js/map-data.js', import.meta.url),'// Mapa generado a partir de es-atlas (MIT, https://github.com/martgnz/es-atlas) con d3-geo.\n// Coordenadas ya proyectadas en un lienzo SVG de '+W+'x'+H+'.\nwindow.MAP_DATA = '+JSON.stringify(data)+';\n');
+console.log(fs.statSync(new URL('../comunidades/js/map-data.js', import.meta.url)).size); console.log(out.map(r=>r.name+' '+r.cx+','+r.cy+' a='+r.area).join('\n'));

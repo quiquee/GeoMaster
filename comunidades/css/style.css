@@ -39,7 +39,9 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
   color: #fff;
   flex: 0 0 auto;
 }
-.brand { font-weight: 800; font-size: 1.15rem; white-space: nowrap; }
+.brand { font-weight: 800; font-size: 1.15rem; white-space: nowrap; color: #fff; text-decoration: none; background: rgba(255,255,255,.15); padding: 6px 12px; border-radius: 10px; }
+.back-link { display: inline-block; margin-bottom: 8px; color: var(--muted); text-decoration: none; font-weight: 700; font-size: .95rem; }
+.back-link:hover { color: var(--accent-dark); }
 .prompt {
   flex: 1;
   text-align: center;
@@ -303,7 +305,7 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
   #list button .sw { width: 12px; height: 12px; }
 }
 @media (max-width: 640px) {
-  .brand { display: none; }
+  .brand { padding: 6px 8px; font-size: .95rem; }
   #topbar { padding: 6px 10px; gap: 8px; }
   .stat { padding: 3px 7px; font-size: .85rem; }
   .icon-btn { width: 34px; height: 34px; }

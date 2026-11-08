@@ -2,76 +2,170 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>GeoMaster · Comunidades Autónomas</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juegos Reunidos JamesMer</title>
+  <style>
+    :root {
+      --bg1: #1f4e79;
+      --bg2: #2b6ca3;
+      --ink: #1f2d3d;
+      --muted: #5f7286;
+      --accent: #ff8a1f;
+      --accent-dark: #c85d00;
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.08) 0 120px, transparent 121px),
+        radial-gradient(circle at 85% 80%, rgba(255,255,255,.06) 0 160px, transparent 161px),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 24px;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    header { text-align: center; margin-bottom: 28px; }
+    .logo {
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: .01em;
+      text-shadow: 0 4px 0 rgba(0,0,0,.25);
+    }
+    .logo .w1 { color: #ffd34d; }
+    .logo .w2 { color: #8fd18b; }
+    .logo .w3 {
+      display: inline-block;
+      margin-top: 6px;
+      color: #fff;
+      background: var(--accent);
+      padding: 2px 18px 6px;
+      border-radius: 14px;
+      box-shadow: 0 5px 0 var(--accent-dark);
+      text-shadow: none;
+    }
+    .tagline { color: #d7e8f5; font-size: 1.1rem; margin: 18px 0 0; }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+      gap: 22px;
+      justify-content: center;
+      width: 100%;
+      max-width: 1100px;
+    }
+    .game {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 0 rgba(0,0,0,.18), 0 18px 40px rgba(0,0,0,.2);
+      transition: transform .15s, box-shadow .15s;
+      border: 0;
+      padding: 0;
+      font: inherit;
+      text-align: left;
+    }
+    a.game:hover { transform: translateY(-4px); }
+    a.game:active { transform: translateY(3px); box-shadow: 0 4px 0 rgba(0,0,0,.18), 0 10px 24px rgba(0,0,0,.2); }
+    .thumb {
+      height: 190px;
+      background: #cfe8f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    .thumb svg { width: 100%; height: 100%; }
+    .thumb .land { fill: #fffdf6; stroke: #3a5a78; stroke-width: 3; stroke-linejoin: round; }
+    .thumb .hl { fill: var(--accent); stroke: var(--accent-dark); stroke-width: 3; stroke-linejoin: round; }
+    .info { padding: 16px 20px 20px; }
+    .info h2 { margin: 0 0 6px; font-size: 1.35rem; }
+    .info p { margin: 0 0 14px; color: var(--muted); line-height: 1.35; }
+    .play {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      padding: 10px 22px;
+      border-radius: 999px;
+      box-shadow: 0 4px 0 var(--accent-dark);
+    }
+
+    .game.soon {
+      background: rgba(255,255,255,.12);
+      border: 3px dashed rgba(255,255,255,.45);
+      box-shadow: none;
+      color: #e3eef7;
+      cursor: not-allowed;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 330px;
+      padding: 24px;
+      opacity: .9;
+    }
+    .game.soon .big { font-size: 3.4rem; margin-bottom: 10px; filter: grayscale(.2); }
+    .game.soon b { font-size: 1.35rem; display: block; }
+    .game.soon small { display: block; margin-top: 6px; font-size: .95rem; color: #bcd3e6; }
+
+    footer { margin-top: auto; padding-top: 28px; color: #a9c4da; font-size: .85rem; }
+  </style>
 </head>
 <body>
-  <header id="topbar">
-    <div class="brand">🗺️ GeoMaster</div>
-    <div id="prompt" class="prompt">Comunidades autónomas de España</div>
-    <div class="stats">
-      <span class="stat ok" title="Aciertos">✔ <b id="hits">0</b></span>
-      <span class="stat ko" title="Fallos">✘ <b id="misses">0</b></span>
-      <span class="stat" title="Descubiertas"><b id="found">0</b>/<b id="total">0</b></span>
-      <button id="btnSound" class="icon-btn" title="Sonido" aria-label="Sonido">🔊</button>
-      <button id="btnMenu" class="icon-btn" title="Menú" aria-label="Menú">☰</button>
-    </div>
+  <header>
+    <h1 class="logo">
+      <span class="w1">Juegos</span> <span class="w2">Reunidos</span><br>
+      <span class="w3">JamesMer</span>
+    </h1>
+    <p class="tagline">Elige un juego 🎲</p>
   </header>
-  <div id="timerbar"><div id="timerfill"></div><span id="timertext"></span></div>
 
-  <main id="game">
-    <section id="mapWrap">
-      <svg id="map" role="img" aria-label="Mapa de España"></svg>
-      <div id="toast" class="toast"></div>
-    </section>
-    <aside id="listWrap">
-      <ul id="list"></ul>
-    </aside>
+  <main class="games">
+    <a class="game" href="comunidades/index.html">
+      <div class="thumb"><svg id="thumbMap" aria-hidden="true"></svg></div>
+      <div class="info">
+        <h2>🗺️ Comunidades Autónomas</h2>
+        <p>¿Qué comunidad es? ¿Dónde está? Repasa el mapa de España contra el reloj.</p>
+        <span class="play">Jugar ▶</span>
+      </div>
+    </a>
+
+    <button class="game soon" type="button" disabled aria-disabled="true">
+      <span class="big">🎁</span>
+      <b>Más juegos pronto</b>
+      <small>¡Estamos preparando nuevos juegos!</small>
+    </button>
   </main>
 
-  <!-- Menú inicial -->
-  <div id="menu" class="overlay show">
-    <div class="card">
-      <h1>🗺️ GeoMaster</h1>
-      <p class="sub">¿Te acuerdas de las comunidades autónomas de España?</p>
+  <footer>Juegos Reunidos JamesMer</footer>
 
-      <h3>Modo de juego</h3>
-      <div class="options" id="optMode">
-        <button data-v="which" class="opt sel"><span class="big">🟧</span><b>¿Qué comunidad es?</b><small>Se marca una en el mapa y eliges su nombre en la lista.</small></button>
-        <button data-v="where" class="opt"><span class="big">👆</span><b>¿Dónde está?</b><small>Se marca un nombre y la tocas en el mapa.</small></button>
-        <button data-v="mix" class="opt"><span class="big">🔀</span><b>Mezclado</b><small>Un poco de cada.</small></button>
-      </div>
-
-      <h3>Tiempo por pregunta</h3>
-      <div class="options small" id="optTime">
-        <button data-v="3" class="opt">3 s</button>
-        <button data-v="5" class="opt sel">5 s</button>
-        <button data-v="8" class="opt">8 s</button>
-        <button data-v="12" class="opt">12 s</button>
-        <button data-v="0" class="opt">Sin límite</button>
-      </div>
-
-      <label class="check"><input type="checkbox" id="optCities" checked> Incluir Ceuta y Melilla (ciudades autónomas)</label>
-
-      <button id="btnStart" class="primary">¡A jugar! ▶</button>
-    </div>
-  </div>
-
-  <!-- Pantalla final -->
-  <div id="end" class="overlay">
-    <div class="card">
-      <h1 id="endTitle">¡Mapa completado!</h1>
-      <div id="stars" class="stars"></div>
-      <p id="endText"></p>
-      <div class="row">
-        <button id="btnAgain" class="primary">Otra vez ↻</button>
-        <button id="btnToMenu" class="secondary">Menú</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/map-data.js?v=2"></script>
-  <script src="js/game.js?v=2"></script>
+  <script src="comunidades/js/map-data.js?v=3"></script>
+  <script>
+    // Miniatura del mapa de España para la tarjeta del juego de comunidades
+    (function () {
+      var D = window.MAP_DATA, svg = document.getElementById('thumbMap');
+      if (!D || !svg) return;
+      var NS = 'http://www.w3.org/2000/svg';
+      svg.setAttribute('viewBox', '0 0 ' + D.width + ' ' + D.height);
+      D.regions.forEach(function (r) {
+        var p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', r.d);
+        p.setAttribute('class', r.id === '13' ? 'hl' : 'land');
+        svg.appendChild(p);
+      });
+    })();
+  </script>
 </body>
 </html>
